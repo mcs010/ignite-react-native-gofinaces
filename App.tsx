@@ -1,6 +1,10 @@
+import 'react-native-gesture-handler';
+
 import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
+
+import { NavigationContainer } from '@react-navigation/native';
 
 import {
   useFonts,
@@ -10,8 +14,8 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import theme from './src/global/styles/theme';
-//If no file is specified, automatically renders the index file (only if it's named index, otherwise it will cause an error)
-import { Register } from './src/screens/Register';
+
+import { AppRoutes } from './src/routes/app.routes';
 
 
 export default function App() {
@@ -30,7 +34,9 @@ export default function App() {
   return (
     //ThemeProvider Makes the theme available for all the application
     <ThemeProvider theme={theme}>
-      <Register />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   )
 }
