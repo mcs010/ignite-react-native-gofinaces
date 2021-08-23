@@ -17,6 +17,7 @@ import theme from './src/global/styles/theme';
 
 import { AppRoutes } from './src/routes/app.routes';
 
+import 'intl'
 
 export default function App() {
 
