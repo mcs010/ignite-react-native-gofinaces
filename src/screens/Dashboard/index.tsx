@@ -36,9 +36,11 @@ export function Dashboard(){
         const response = await AsyncStorage.getItem(dataKey)
 
         const transactions = response ? JSON.parse(response) : []
+        console.log("Transactions: \n", transactions)
 
         const transactionsFormatted: DataListProps[] = transactions.map((item: DataListProps) => {
-            //console.log(item.date)
+            console.log("Item: \n", item)
+            console.log("item.type: \n", item.type)
             const amount = Number(item.amount).toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
