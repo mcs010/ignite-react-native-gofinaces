@@ -3,7 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 interface TransactionProps{
-    type: 'positive' | 'negative'
+    type: 'positive' | 'negative';
 }
 
 export const Container = styled.View`

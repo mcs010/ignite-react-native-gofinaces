@@ -38,7 +38,8 @@ export function Dashboard(){
         const transactions = response ? JSON.parse(response) : []
 
         const transactionsFormatted: DataListProps[] = transactions.map((item: DataListProps) => {
-            const amount = Number(item.amount).toLocaleString('pt-br', {
+            //console.log(item.date)
+            const amount = Number(item.amount).toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL'
             })
@@ -55,11 +56,8 @@ export function Dashboard(){
                 amount,
                 type: item.type,
                 category: item.category,
-                date,
+                date
             }
-
-            console.log(date)
-            console.log(amount)
         })
 
         setData(transactionsFormatted)
@@ -69,11 +67,11 @@ export function Dashboard(){
         loadTransactions()
     }, [])
     
-    useFocusEffect(
-        useCallback(() => {
-        loadTransactions()
-    },[]),
-    )
+    // useFocusEffect(
+    //     useCallback(() => {
+    //     loadTransactions()
+    // },[]),
+    // )
 
     return(
         <Container>
