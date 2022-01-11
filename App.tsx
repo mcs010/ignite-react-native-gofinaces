@@ -7,7 +7,7 @@ import { StatusBar } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes';
 
 import {
   useFonts,
@@ -20,6 +20,10 @@ import theme from './src/global/styles/theme';
 
 import { AppRoutes } from './src/routes/app.routes';
 
+import { SignIn } from './src/screens/SignIn';
+
+import { AuthProvider, useAuth } from './src/hooks/auth';
+
 export default function App() {
 
   const [fontsLoaded] = useFonts({
@@ -28,18 +32,22 @@ export default function App() {
     Poppins_700Bold
   });
 
+  const { userStorageLoading } = useAuth();
+
   //While the fonts are being loaded, displays the splash screen
-  if(!fontsLoaded){
+  if(!fontsLoaded || userStorageLoading){
     return <AppLoading />
   }
 
   return (
     //ThemeProvider Makes the theme available for all the application
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
         <StatusBar barStyle="light-content" />
-        <AppRoutes />
-      </NavigationContainer>
+
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+
     </ThemeProvider>
   )
 }
